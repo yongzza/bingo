@@ -83,3 +83,51 @@ void StartbingoGame(int *record)
 
 	}
 }
+
+void Recordbingo(int *record)
+{
+	if (record[0])
+	{
+		printf("\n********** 현재 전적 **********\n");
+		printf("%d전 %d승 %d패\n", record[0], record[1], record[2]);
+	}
+	else
+		printf("전적이 없습니다...\n");
+}
+
+void initBingo(int *bingo)
+{
+	int i; 
+	int sour, dest; 
+	int temp; 
+	for (i = 0; i < 25; i++) 
+		bingo[i] = i + 1; 
+
+	for (i = 0; i < 100; i++)
+	{
+		sour = rand() % 25; 
+		dest = rand() % 25; 
+		temp = bingo[sour]; 
+		bingo[sour] = bingo[dest]; 
+		bingo[dest] = temp; 
+	}
+}
+
+void BingoBoard(int *bingo)
+{
+	system("cls"); 
+	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 1, 6, 6, 22, 6, 6, 22, 6, 6, 22, 6, 6, 22, 6, 6, 2);
+	for (int i = 0; i < 5; i++)	
+	{
+		for (int j = 0; j < 5; j++)	
+			if (bingo[(i * 5) + j] == 35)	
+				printf("%c #", 5);	
+			else	
+				printf("%c%2d", 5, bingo[(i * 5) + j]);
+		printf("%c\n", 5);	
+		if (i != 4)	
+			printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 25, 6, 6, 16, 6, 6, 16, 6, 6, 16, 6, 6, 16, 6, 6, 23);
+	}
+	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 3, 6, 6, 21, 6, 6, 21, 6, 6, 21, 6, 6, 21, 6, 6, 4);
+
+}
