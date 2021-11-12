@@ -131,3 +131,34 @@ void BingoBoard(int *bingo)
 	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 3, 6, 6, 21, 6, 6, 21, 6, 6, 21, 6, 6, 21, 6, 6, 4);
 
 }
+
+int checkBingo(int *bingo)
+{
+	int bingoCheck[12] = { 0 };
+	int count = 0;	
+	int i, j;
+
+	for (i = 0; i < 5; i++)
+	{
+		for (j = 0; j < 5; j++)
+		{
+
+			if (bingo[i * 5 + j] == 35)
+				bingoCheck[i]++;
+			if (bingo[j * 5 + i] == 35)
+				bingoCheck[i + 5]++;
+		}
+		for (j = i; j <= i; j++)
+			if (bingo[i * 5 + j] == 35)
+				bingoCheck[10]++;
+	}
+	for (i = 4; i >= 0; i--)
+		for (j = 4 - i; j >= 4 - i; j--)
+			if (bingo[i * 5 + j] == 35)
+				bingoCheck[11]++;
+
+	for (i = 0; i < 12; i++)
+		if (bingoCheck[i] == 5)	
+			count++;
+	return count;
+}
