@@ -162,3 +162,65 @@ int checkBingo(int *bingo)
 			count++;
 	return count;
 }
+
+void inputNum(int *userBingo, int *comBingo)
+{
+	int num;	
+	int isCheck;	
+	while (1)	
+	{
+		isCheck = 0;	
+		printf("입력 : ");
+		scanf_s("%d", &num);
+		if (num < 1 || num > 25)	
+			printf("1 ~ 25 사이의 숫자를 입력해주세요\n");	
+		else	
+		{
+			for (int i = 0; i < 25; i++)	
+			{
+				if (userBingo[i] == num)	
+				{
+					userBingo[i] = 35;	
+					isCheck = 1;	
+				}
+				if (comBingo[i] == num)	
+				{
+					comBingo[i] = 35;	
+				}
+			}
+			if (isCheck)	
+				break;	
+			else	
+				printf("이미 입력한 숫자입니다.\n");	
+		}
+	}
+}
+
+void randNum(int *userBingo, int *comBingo)
+{
+	int num;	
+	int isCheck;	
+	printf("컴퓨터 차례입니다.\n");	
+	Sleep(1000);	
+	while (1)	
+	{
+		isCheck = 0;	
+		num = rand() % 25 + 1;	
+		for (int i = 0; i < 25; i++)	
+		{
+			if (userBingo[i] == num)	
+			{
+				userBingo[i] = 35;	
+				isCheck = 1;	
+			}
+			if (comBingo[i] == num)	
+			{
+				comBingo[i] = 35;	
+			}
+		}
+		if (isCheck)	
+			break;	
+	}
+	printf("컴퓨터가 입력한 숫자 : %d\n", num);	
+	Sleep(1500);	
+}
