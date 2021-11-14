@@ -5,12 +5,12 @@
 void StartbingoGame(int*); //빙고게임 시작 함수 선언
 void Recordbingo(int*); //게임 전적을 출력하는 함수 선언
 void initBingo(int*); //빙고판을 초기화하는 함수 선언
-int CheckBingo(int*); //빙고를 체크하는 함수 선언
+int checkBingo(int*); //빙고를 체크하는 함수 선언
 void BingoBoard(int*); //빙고판을 출력하는 함수 선언
 void inputNum(int*, int*); //숫자 입력하는 함수 선언
 void randNum(int*, int*); //랜덤 숫자 지정하는 함수 선언
-						  
-int main() 
+
+int main()
 {
 	int menu; //menu= 1,2,3번 메뉴를 입력 받아줄 변수
 	int record[3] = { 0 }; //전적을 보관할 배열
@@ -60,17 +60,17 @@ void StartbingoGame(int *record)
 		userCount = checkBingo(userBingo); //유저의 빙고수를 체크하여 변수에 대입한다.
 		comCount = checkBingo(comBingo); //컴퓨터의 빙고수를 체크하여 변수에 대입한다.
 		BingoBoard(userBingo); //유저의 빙고판을 보여준다.
-						
+
 		printf("사용자 : %d줄 빙고\n", userCount); //각각 빙고수를 출력해준다.
 		printf("컴퓨터 : %d줄 빙고\n", comCount);
 
 		if ((userCount >= 5 && isTurn) || (userCount >= 5 && comCount < 5))//현재 유저의 빙고수가 5를 넘고 유저의 턴인 경우
-																	//유저의 빙고수가 5를 넘으며 컴퓨터의 빙고수가 5를 넘지 못한 경우 유저의 승리
+																		   //유저의 빙고수가 5를 넘으며 컴퓨터의 빙고수가 5를 넘지 못한 경우 유저의 승리
 		{
 			printf("사용자의 %d줄 빙고로 승리했습니다.\n", userCount); //사용자 승리 출력, 전적을 증가시킨다
 			record[0]++; //전적 증가
 			record[1]++; //승리 증가
-			break; 
+			break;
 		}
 
 		else if (comCount >= 5)//컴퓨터의 빙고수가 5를 넘으면 사용자 패배
@@ -92,7 +92,7 @@ void StartbingoGame(int *record)
 
 void Recordbingo(int *record)//전적을 출력한다
 {
-	if (record[0]) 
+	if (record[0])
 	{
 		printf("\n********** 현재 전적 **********\n");
 		printf("%d전 %d승 %d패\n", record[0], record[1], record[2]);
@@ -130,7 +130,7 @@ void BingoBoard(int *bingo)
 			if (bingo[(i * 5) + j] == 35) //만약 현재 출력할 숫자가 체크된 것이면
 				printf("%c #", 5); //칸 모양과 #을 출력한다. (│ # 이러한 모양)	
 			else //아닌 경우 칸 모양과 해당 숫자를 출력한다.(│ 3 이러한 모양)	
-				printf("%c%2d", 5, bingo[(i * 5) + j]); 
+				printf("%c%2d", 5, bingo[(i * 5) + j]);
 		printf("%c\n", 5);	//한 줄의 끝 문자를 출력 한 뒤에 개행한다.(│)
 		if (i != 4)	//마지막 행이 아닌 동안에는 계속 중간 줄을 출력한다. (├ ─ ┼ ┤ )
 			printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 25, 6, 6, 16, 6, 6, 16, 6, 6, 16, 6, 6, 16, 6, 6, 23);
@@ -185,7 +185,8 @@ void inputNum(int *userBingo, int *comBingo)
 		else //정상적인 범위 내의 숫자인 경우	
 		{
 			for (int i = 0; i < 25; i++) //빙고 배열 25개를 모두 검사해서	
-			{=
+			{
+
 				if (userBingo[i] == num) //입력받은 수와 같은 수가 저장되어 있다면	
 				{
 					userBingo[i] = 35;	//그 값을 35라는 값으로 바꾸고(#의 아스키코드 값=35)
